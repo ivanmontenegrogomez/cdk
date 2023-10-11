@@ -10,7 +10,7 @@ export class DemoawspipelineStack extends cdk.Stack {
     const democicdpipeline = new CodePipeline(this, 'demopipeline', 
     {
       synth: new ShellStep('Synth', {
-        input: CodePipelineSource.gitHub('Rahul1981/democicd021223', 'main'),
+        input: CodePipelineSource.gitHub('ivanmontenegrogomez/cdk', 'main'),
         commands: [
           'npm ci',
           'npm run build',
