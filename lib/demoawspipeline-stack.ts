@@ -11,7 +11,7 @@ export class DemoawspipelineStack extends cdk.Stack {
     {
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('ivanmontenegrogomez/cdk', 'main',
-        {authentication: cdk.SecretValue.secretsManager("github-token-v4",{jsonField:"github-token-v4"})}),
+        {authentication: cdk.SecretValue.secretsManager("cdk-pipeline",{jsonField:"newToken"})}),
         commands: [
           'npm ci',
           'npm run build',
