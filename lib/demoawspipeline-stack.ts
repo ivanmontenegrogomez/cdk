@@ -34,5 +34,7 @@ export class DemoawspipelineStack extends cdk.Stack {
       env: { account: '482695813838', region: 'us-east-1' },
     }));
 
+
+    
  }
 }
