@@ -2,6 +2,10 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 import { pipeline } from 'stream';
+import { PipeLineAppStage } from './demoawspipeline-app-stack';
+import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
+
+
 
 export class DemoawspipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -20,8 +24,15 @@ export class DemoawspipelineStack extends cdk.Stack {
       })
     })
 
+    const testingStage = democicdpipeline.addStage(new PipeLineAppStage(this, 'test', {
+      env: { account: '482695813838', region: 'us-east-1' },
+    }));
     
+    testingStage.addPost(new ManualApprovalStep('approval'))
 
+    const prodStage = democicdpipeline.addStage(new PipeLineAppStage(this, 'prod', {
+      env: { account: '482695813838', region: 'us-east-1' },
+    }));
 
  }
 }
